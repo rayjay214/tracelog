@@ -1,0 +1,58 @@
+env = Environment()
+
+env.Append(CPPDEFINES = ['_LINUX_OS_', 'RAPIDJSON_HAS_STDSTRING', '__STDC_FORMAT_MACROS' ])
+
+env.Append(CPPFLAGS=['-Wall', '-O3', '-g', '-std=c++0x', 
+                     '-DCHECK_PTHREAD_RETURN_VALUE', 
+                     '-DMUDUO_STD_STRING',
+                     '-DSO_REUSEPORT',
+                     '-D_FILE_OFFSET_BITS=64' , 
+                     '-Wextra', '-Wno-unused-parameter', '-Woverloaded-virtual', 
+                     '-Wpointer-arith', '-Wwrite-strings', '-march=native', '-rdynamic',
+                     '-finline-limit=1000', 
+                     '-DNDEBUG', 
+                     ])
+
+
+env.Append(CPPPATH = ['.',
+                      '/usr/local/include',
+                      '../common/',
+                      'muduo/',
+                      '../netframe_lib/'
+                      ])
+
+env.Append(LIBS = ['pthread',
+                   'log4cxx',
+                   'nframe',
+                   'protobuf',
+                   'boost_program_options'
+                   ])
+
+env.Append(LIBPATH = ['./', 
+                      '/usr/lib', 
+                      '/usr/lib64/', 
+                      '/usr/local/lib',
+                      '../netframe_lib/'
+                      ])
+
+env.Append(RPATH = ['/usr/lib/nptl', '/usr/lib64/', '/usr/lib', '/usr/local/lib'])
+
+Cgi = env.Program('trace_async_cgi', [
+                                'muduo/Buffer.cpp',
+
+                                'cgicc_lib/FormEntry.cpp',
+                                'cgicc_lib/FormFile.cpp',
+                                'cgicc_lib/CgiUtils.cpp',
+                                'cgicc_lib/Cgicc.cpp',
+                                'cgicc_lib/HTTPCookie.cpp',
+                                'cgicc_lib/MStreamable.cpp',
+
+                                'main.cpp',
+                                'AsyncCommThread.cpp',
+                                'helper.cpp',
+                                '../common/trace.pb.cc'
+                                ])
+
+
+
+
