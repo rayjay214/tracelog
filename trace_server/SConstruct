@@ -1,0 +1,45 @@
+env = Environment()
+import commands
+output = commands.getstatusoutput('uname -m')
+if output[1]=='x86_64':
+    env.Append(CPPFLAGS=['-Wall', '-g'])
+else:
+    env.Append(CPPFLAGS=['-Wall', '-g','-m32'])
+
+env.Append(CPPDEFINES = ['_LINUX_OS_', 'RAPIDJSON_HAS_STDSTRING', '__STDC_FORMAT_MACROS', 'USE_GMLOGAPI'])
+env.Append(CPPFLAGS = ['-g','-std=c++0x'])
+
+env.Append(CPPPATH = ['.', 
+                      '/usr/local/include',
+                      '../common/',
+                      '../netframe_lib/'
+                      ])
+
+env.Append(LIBS = [
+                   'log4cxx',
+                   'pthread',
+                   'nframe',
+                   'protobuf',
+                   'ssl',
+                   'crypto',
+		   'boost_program_options'
+                   ])
+   
+env.Append(LIBPATH = ['/usr/lib', 
+                      '/usr/lib64/', 
+                      '/usr/lib/nptl', 
+                      '/usr/local/lib',
+                      '../netframe_lib/'])
+
+env.Append(RPATH = ['/usr/lib/nptl', '/usr/lib64/', '/usr/lib', '/usr/local/lib'])
+
+
+TraceServer = env.Program('TraceServer', [
+    'main.cpp',
+    'AsyncCommThread.cpp',
+    'helper.cpp',
+    '../common/trace.pb.cc' 
+])
+
+Execute(Mkdir('build/bin'))
+env.Install('build/bin', TraceServer)
