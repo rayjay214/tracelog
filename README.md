@@ -9,7 +9,7 @@ With the support of tracelog framework, we can achieve the above goals on just o
 * set the config with service_name=LOGIN_SERVICE, p1=1, p2=888 (p1, p2, p3 are user defined params, it is illustrated in the examples)
 * keep the web page on and wait for the outputs (it will internally fetch the latest logs at specified intervals)
 
-Of course, you have to do some extra work for your user login service. 1. Create a tracelog thread (which can be extended from the base trace client thread) and keep it running. 2. Add an extra line in you code where your orignal log print code goes. For example, your log print line look like this : Log("user %d login at %s", uid, time). Now add one lineTRACE_IF(g_pTracer, (const char*)&uid, "user %d logined at %s", uid, time). You could check the details in the example.<br>
+Of course, you have to do some extra work for your user login service. 1. Create a tracelog thread (which can be extended from the base trace client thread) and keep it running. 2. Add an extra line in you code where your orignal log print code goes. For example, your log print line look like this : Log("user %d login at %s", uid, time). Now add one line TRACE_IF(g_pTracer, (const char*)&uid, "user %d logined at %s", uid, time). You could check the details in the example.<br>
 
 Other from the above functionality，it could also do some other tasks such as,
 * Print global variable like some statistics.
@@ -17,6 +17,7 @@ Other from the above functionality，it could also do some other tasks such as,
 * ...
 
 # Architechture
+![image](http://github.com/rayjay214/tracelog/master/images/architechture.png)
 
 # Usage
 
