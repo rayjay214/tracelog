@@ -28,7 +28,7 @@ You can either deploy your own server, cgi and web pages or use mine for experim
 * Add TraceClientThread.cpp and trace.pb.cc into your makefiles or SConstruct(which I use) and link liblog4cxx.so, libprotobuf.so, libnframe.so.
 * Create a new Class extended from TraceClientThread and overwrite the check and setConfig method to implement your own logic.
 * Start the TraceClientThread and connect it to my Trace Server, then report your service name (assumed TEST_SERVICE) and your ip and port. Keep the thread running all the time.
-* Open the url trace.gmiot.net and login with 123456.
+* Open the url [trace.gmiot.net](trace.gmiot.net) and login with 123456.
 * Hit the setting tab and set the config like this
 * Wait for the logs to show.
 
