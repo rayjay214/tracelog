@@ -21,4 +21,19 @@ Other from the above functionality，it could also do some other tasks such as,
 In the picture, we can see that the tracelog framework consists of three modules, Trace Server, Trace Cgi and Trace Client. Trace Server maintains configs for each session set by Trace Cgi and logs uploaded by each Trace Client. Trace Cgi is an async fastcgi deployed along with nginx, which can accept http request, parse the params and send it to Trace Server. Trace Client is deployed with your own programs, which at its start time should send self info to Trace Server (send it again if server restarts). Whenever someone set configs for ServiceA, Trace Client embeded in ServiceA will receive the configs, afterwards, if condition meets, the client will upload logs to server. Then Trace Cgi can get the logs uploaded by Trace Client.
 
 # Usage
+You can either deploy your own server, cgi and web pages or use mine for experiment. Let's talk about the easier way first, use my server, cgi and web pages (simple and crude for the moment).<br>
+
+## C++ Client
+[check the example client code](/trace_client/cpp)
+* Add TraceClientThread.cpp and trace.pb.cc into your makefiles or SConstruct(which I use) and link liblog4cxx.so, libprotobuf.so, libnframe.so.
+* Create a new Class extended from TraceClientThread and overwrite the check and setConfig method to implement your own logic.
+* Start the TraceClientThread and connect it to my Trace Server, then report your service name (assumed TEST_SERVICE) and your ip and port. Keep the thread running all the time.
+* Open the url trace.gmiot.net and login with 123456.
+* Hit the setting tab and set the config like this
+* Wait for the logs to show.
+
+## Python Client
+[check the example client code](/trace_client/python)
+* Same steps as C++ Client
+
 
