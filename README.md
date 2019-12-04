@@ -17,7 +17,8 @@ Other from the above functionality，it could also do some other tasks such as,
 * ...
 
 # Architechture
-![image](http://github.com/rayjay214/tracelog/master/images/architechture.png)
+![image](https://raw.githubusercontent.com/rayjay214/tracelog/master/images/architechture.png)
+In the picture, we can see that the tracelog framework consists of three modules, Trace Server, Trace Cgi and Trace Client. Trace Server maintains configs for each session set by Trace Cgi and logs uploaded by each Trace Client. Trace Cgi is an async fastcgi deployed along with nginx, which can accept http request, parse the params and send it to Trace Server. Trace Client is deployed with your own programs, which at its start time should send self info to Trace Server (send it again if server restarts). Whenever someone set configs for ServiceA, Trace Client embeded in ServiceA will receive the configs, afterwards, if condition meets, the client will upload logs to server. Then Trace Cgi can get the logs uploaded by Trace Client.
 
 # Usage
 
