@@ -29,7 +29,8 @@ You can either deploy your own server, cgi and web pages or use mine for experim
 * Create a new Class extended from TraceClientThread and overwrite the check and setConfig method to implement your own logic.
 * Start the TraceClientThread and connect it to my Trace Server, then report your service name (assumed TEST_SERVICE) and your ip and port. Keep the thread running all the time.
 * Open the url [trace.gmiot.net](http://trace.gmiot.net) and login with 123456.
-* Hit the setting tab and set the config like this
+* Hit the setting tab and set the config like this.
+![image](https://raw.githubusercontent.com/rayjay214/tracelog/master/images/set_config.png)
 * Wait for the logs to show.
 
 ## Python Client
