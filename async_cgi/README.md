@@ -22,11 +22,23 @@ scons
 ```
 
 # Usage
-Place the cgi.ini and log4cxx.cgi in the same directory as the compiled binary file.<br>
-```nohup trace_async_cgi &```
+Place the cgi.ini and log4cxx.cgi in the same directory as the compiled binary file.
+```
+nohup trace_async_cgi &
+```
 
 # Test
+Make sure the trace server is started.
+```
+login with passwrod 123456
+curl "http://yourdomian or ip/tracecgi?method=login&password=e10adc3949ba59abbe56e057f20f883e"
 
+set config
+curl "http://yourdomian or ip/tracecgi?method=setConfig&gns_name=LITE_PROXY&p1=1&p2=66861234567890&p3=abc&session_id=3398a053-aa58-4618-948c-36abab29d836"
+
+get logs
+curl "http://yourdomian or ip/tracecgi?method=getLog&session_id=3398a053-aa58-4618-948c-36abab29d836"
+```
 
 
 
